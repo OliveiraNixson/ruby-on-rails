@@ -1,0 +1,35 @@
+<%= turbo_frame_tag "line_item_date_#{line_item_date.id}" do %>
+  <div class="bg-white shadow-md rounded-lg p-4 mb-4">
+    <div class="flex items-center justify-between">
+      
+      <h2 class="text-lg font-semibold text-gray-800">
+        <%= l(line_item_date.date, format: :long) %>
+      </h2>
+
+      <div class="flex gap-2">
+        <%= button_to "Delete",
+          [quote, line_item_date],
+          method: :delete,
+          data: { turbo_confirm: "Are you sure?"},
+          class: "bg-red-500 hover:bg-red-600 text-white text-sm font-medium px-3 py-1.5 rounded-md transition"
+        %>
+
+        <%= link_to "Edit",
+          edit_quote_line_item_date_path(quote, line_item_date),
+          class: "bg-blue-500 hover:bg-blue-600 text-white text-sm font-medium px-3 py-1.5 rounded-md transition"
+        %>
+      </div>
+
+    </div>
+
+    <%= turbo_frame_tag "line_item_date_#{line_item_date.id}_line_items" do %>
+        <%= render line_item_date.line_items , quote: quote, line_item_date: line_item_date %>
+    <% end %>
+
+    <%= turbo_frame_tag "line_item_date_#{line_item_date.id}_new_line_item" %>
+
+    <div class="flex justify-center pt-4 ">
+      <%= link_to "Add New Item", [:new, quote, line_item_date, :line_item], data: {turbo_frame: "line_item_date_#{line_item_date.id}_new_line_item"},  class:"bg-blue-500 hover:bg-blue-600 rounded-lg p-2 transition ease-in-out text-white"%>
+    </div>
+  </div>
+<% end %>

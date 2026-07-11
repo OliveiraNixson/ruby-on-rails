@@ -1,0 +1,38 @@
+<div class="flex items-center justify-center bg-gray-100 mb-6">
+
+  <div class="w-full bg-white p-8 rounded-2xl shadow-lg">
+
+    <h2 class="text-2xl font-bold text-gray-800 mb-6 text-center">
+      <%= quote.persisted? ? "Edit Quote" : "New Quote" %>
+    </h2>
+
+    <%= simple_form_for quote do |f| %>
+
+      <% if quote.errors.any? %>
+        <div class="mb-4 p-4 bg-red-100 border border-red-300 text-red-700 rounded-lg">
+          <%= quote.errors.full_messages.to_sentence.capitalize %>
+        </div>
+      <% end %>
+
+      <div class="mb-5">
+        <%= f.input :name,
+          label: "Quote",
+          input_html: {
+            autofocus: true,
+            class: "w-full rounded-xl border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
+          },
+          label_html: { class: "block text-sm font-medium text-gray-700 mb-1" }
+        %>
+      </div>
+      <div class="w-full flex flex-col gap-6">
+      <%= link_to "Cancel",quotes_path, 
+          class: "w-full bg-red-600 hover:bg-red-700 text-white font-semibold py-3 rounded-xl shadow-md transition duration-300 transform hover:scale-[1.02]" %>
+
+      <%= f.submit quote.persisted? ? "Update Quote" : "Create Quote",
+          class: "w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-xl shadow-md transition duration-300 transform hover:scale-[1.02]" %>
+      </div>
+    <% end %>
+
+  </div>
+
+</div>

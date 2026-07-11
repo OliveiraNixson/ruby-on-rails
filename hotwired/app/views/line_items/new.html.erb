@@ -1,0 +1,4 @@
+
+<%= turbo_frame_tag "line_item_date_#{@line_item_date.id}_new_line_item"  do %>
+    <%= render partial: "line_items/form", locals:{ quote: @quote, line_item_date: @line_item_date, line_item: @line_item } %>
+<% end %>

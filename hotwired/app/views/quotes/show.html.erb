@@ -1,0 +1,36 @@
+<main class="min-h-screen w-full bg-gray-100 py-10 px-6">
+
+  <div class="w-full mx-auto">
+
+    <!-- Back Button -->
+    <%= link_to quotes_path,
+        class: "inline-flex items-center text-blue-600 hover:text-blue-800 font-medium mb-6 transition" do %>
+        ← Back to Quotes
+    <% end %>
+
+    <!-- Card -->
+    <div class="flex mb-4 justify-between bg-white p-10 rounded-2xl shadow-lg">
+
+      <h1 class="text-3xl font-bold text-gray-800 mb-4">
+        <%= @quote.name %>
+      </h1>
+      
+      <h2 class="text-3xl font-bold text-gray-800 mb-4">
+          <%= link_to "New Date", new_quote_line_item_date_path(@quote), data:{ turbo_frame: "new_line_item_date"} , class:''%>
+      </h2>
+    </div>
+
+
+    <%= turbo_frame_tag "new_line_item_date" %>
+
+  </div>
+  <%= turbo_frame_tag "line_item_dates" do %>
+    <% @line_item_dates.each do|line| %>
+      <%= render partial: "line_item_dates/line_item_date", locals: {quote: @quote, line_item_date: line}%>
+    <% end %>
+  <% end %>
+</main>
+<%= turbo_frame_tag dom_id(@quote, :total) do %>
+  <%= render "quotes/total", quote: @quote %>
+<% end %>
+

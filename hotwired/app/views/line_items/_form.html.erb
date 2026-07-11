@@ -1,0 +1,54 @@
+<div class="max-w-2xl mx-auto bg-white shadow-md rounded-xl p-6">
+
+  <h2 class="text-xl font-semibold text-gray-800 mb-6">
+    Line Item
+  </h2>
+
+  <%= simple_form_for [quote, line_item_date, line_item] do |f| %>
+
+    <div class="space-y-5">
+
+      <!-- Nome -->
+      <div>
+        <%= f.label :name, class: "block text-sm font-medium text-gray-700" %>
+        <%= f.input_field :name, class: "mt-1 w-full rounded-md border-gray-300 shadow-sm focus:ring focus:ring-blue-200 focus:border-blue-400" %>
+      </div>
+
+      <!-- Descrição -->
+      <div>
+        <%= f.label :description, class: "block text-sm font-medium text-gray-700" %>
+        <%= f.text_area :description, rows: 3,
+              class: "mt-1 w-full rounded-md border-gray-300 shadow-sm focus:ring focus:ring-blue-200 focus:border-blue-400" %>
+      </div>
+
+      <!-- Grid: quantidade + preço -->
+      <div class="grid grid-cols-2 gap-4">
+
+        <div>
+          <%= f.label :quantity, class: "block text-sm font-medium text-gray-700" %>
+          <%= f.input_field :quantity, class: "mt-1 w-full rounded-md border-gray-300 shadow-sm focus:ring focus:ring-blue-200 focus:border-blue-400" %>
+        </div>
+
+        <div>
+          <%= f.label :unit_price, "Unit Price", class: "block text-sm font-medium text-gray-700" %>
+          <%= f.input_field :unit_price, class: "mt-1 w-full rounded-md border-gray-300 shadow-sm focus:ring focus:ring-blue-200 focus:border-blue-400" %>
+        </div>
+
+      </div>
+
+      <!-- Botões -->
+      <div class="flex justify-end gap-3 pt-4 border-t">
+
+        <%= link_to "Cancel",
+                    quote_path(quote),
+                    class: "px-4 py-2 text-sm rounded-md border border-gray-300 text-gray-700 hover:bg-gray-100" %>
+
+        <%= f.submit "Save",
+              class: "px-4 py-2 text-sm rounded-md bg-blue-600 text-white hover:bg-blue-700" %>
+
+      </div>
+
+    </div>
+
+  <% end %>
+</div>

@@ -1,0 +1,21 @@
+<main class="max-w-3xl mx-auto px-4 py-8">
+
+  <div class="mb-6">
+    <%= link_to "← Back to quote", quote_path(@quote), 
+      class: "text-blue-600 hover:text-blue-800 transition font-medium" %>
+  </div>
+
+  <div class="bg-white shadow-md rounded-lg p-6 mb-6">
+    <h1 class="text-2xl font-bold text-gray-800">New Date</h1>
+    <p class="text-sm text-gray-500 mt-1">
+      Update this date to this quote
+    </p>
+  </div>
+
+  <%= turbo_frame_tag "line_item_date_#{@line_item_date.id}" do %>
+    <div class="bg-white shadow-md rounded-lg p-6">
+      <%= render "form", quote: @quote, line_item_date: @line_item_date %>
+    </div>
+  <% end %>
+
+</main>

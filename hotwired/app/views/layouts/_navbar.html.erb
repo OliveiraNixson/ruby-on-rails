@@ -1,0 +1,35 @@
+<header class="bg-white shadow-sm border-b border-gray-100">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+
+    <!-- Logo / Nome -->
+    <% if user_signed_in? %>
+      <div class="text-xl font-bold text-gray-800">
+        <%= current_company.name %>
+      </div>
+    <% end %>
+
+    <% if user_signed_in? %>
+      <div class="flex items-center gap-4">
+
+        <!-- Nome do usuário -->
+        <span class="text-gray-600 text-sm">
+          Olá, <strong><%= current_user.name %></strong>
+        </span>
+
+        <!-- Botão logout -->
+        <%= button_to "Sair", destroy_user_session_path,
+          method: :delete,
+          class: "bg-gray-800 hover:bg-gray-900 text-white text-sm px-4 py-2 rounded-lg transition" %>
+
+      </div>
+    <% else %>
+
+      <!-- Botão login -->
+      <% if !user_signed_in? %>
+        <%= link_to "Entrar", new_user_session_path, class: "bg-blue-600 hover:bg-blue-700 text-white text-sm px-5 py-2 rounded-lg transition" %>  
+        <%= link_to "Criar conta", new_user_registration_path ,class: "bg-blue-600 hover:bg-blue-700 text-white text-sm px-5 py-2 rounded-lg transition" %>
+      <% end %>
+    <% end %>
+
+  </div>
+</header>

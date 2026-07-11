@@ -1,0 +1,4 @@
+<%= turbo_stream.replace "line_item_#{@line_item.id}" do %>
+    <%= render partial: "line_items/line_item", locals:{quote: @quote, line_item_date: @line_item_date, line_item: @line_item}%>
+<% end %>
+<%= turbo_stream.append "flash", partial: "layouts/flash" %>

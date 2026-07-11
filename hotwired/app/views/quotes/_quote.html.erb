@@ -1,0 +1,24 @@
+<%= turbo_frame_tag "quote_#{quote.id}" do %>
+  <div class="bg-white p-6 rounded-2xl shadow-md hover:shadow-xl transition duration-300 flex flex-col gap-4">
+
+    <%= link_to quote.name,
+        quote_path(quote),
+        data: { turbo_frame: "_top"},
+        class: "text-lg font-semibold text-gray-800 hover:text-blue-600 transition" %>
+
+    <div class="flex items-center justify-end gap-3">
+
+      <%= link_to "Edit",
+          edit_quote_path(quote),
+          class: "px-4 py-2 text-sm font-medium text-blue-600 border border-blue-600 rounded-lg hover:bg-blue-600 hover:text-white transition duration-200" %>
+
+      <%= button_to "Delete",
+          quote_path(quote),
+          method: :delete,
+          form: { data: { turbo_confirm: "Are you sure?" } },
+          class: "px-4 py-2 text-sm font-medium text-red-600 border border-red-600 rounded-lg hover:bg-red-600 hover:text-white transition duration-200" %>
+
+    </div>
+
+  </div>
+<% end %>

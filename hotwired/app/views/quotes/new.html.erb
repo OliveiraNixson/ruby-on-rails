@@ -1,0 +1,9 @@
+<main class='container'>
+    <%= link_to sanitize("&larr; Back to quotes"), quotes_path , class:'bg-blue-500 text-white hover:bg-blue-600 p-2 rounded-lg transition ease-in-out cursor-pointer'%>
+    <div class='header'>
+        <h1 class='font-bold text-2xl'>New Quote</h1>
+    </div>
+    <%= turbo_frame_tag "new_quote" do %>
+        <%= render "form", quote: @quote %>
+    <% end %>
+</main>

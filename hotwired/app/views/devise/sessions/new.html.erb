@@ -1,0 +1,53 @@
+<main class="w-full min-h-screen flex items-center justify-center bg-gray-100 px-4">
+  <div class="w-full max-w-md bg-white shadow-xl rounded-2xl p-8">
+
+    <h2 class="text-3xl font-bold text-center text-gray-800 mb-6">
+      Logar
+    </h2>
+
+    <p class="text-center text-gray-500 mb-8">
+      Acesse sua conta para continuar
+    </p>
+
+    <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      
+      <div class="space-y-4">
+        
+        <%= f.input :email,
+            required: false,
+            autofocus: true,
+            label: "Email",
+            input_html: { 
+              autocomplete: "email",
+              class: "w-full rounded-lg border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+            } %>
+
+        <%= f.input :password,
+            required: false,
+            label: "Senha",
+            input_html: { 
+              autocomplete: "current-password",
+              class: "w-full rounded-lg border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+            } %>
+
+        <% if devise_mapping.rememberable? %>
+          <div class="flex items-center justify-between">
+            <%= f.input :remember_me, as: :boolean, label: "Lembrar de mim" %>
+          </div>
+        <% end %>
+
+      </div>
+
+      <div class="mt-6">
+        <%= f.button :submit, "Entrar",
+          class: "w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-lg transition duration-200" %>
+      </div>
+
+    <% end %>
+
+    <div class="mt-6 text-center text-sm text-gray-500">
+      <%= render "devise/shared/links" %>
+    </div>
+
+  </div>
+</main>
