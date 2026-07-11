@@ -1,0 +1,21 @@
+# SQLite3 database configuration
+#
+# SQLite is a simple, file-based database, ideal for development and CodeSandbox.
+# No separate server is needed.
+
+default: &default
+  adapter: sqlite3
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  timeout: 5000
+
+development:
+  <<: *default
+  database: db/development.sqlite3
+
+test:
+  <<: *default
+  database: db/test.sqlite3
+
+production:
+  <<: *default
+  database: db/production.sqlite3

@@ -1,0 +1,2 @@
+class Suco < ApplicationRecord
+end

@@ -1,0 +1,89 @@
+<main id='main' class="grid grid-cols-3 min-h-screen text-center">
+  <div id="container-1" class="bg-fundo-1 p-4">
+    <section class="bg-gray-500">
+      <video autoplay muted loop class=''>
+        <source src='<%= asset_path('promocao3.mp4') %>' type='video/mp4'>
+        Seu Navegador nao suporta HTMl5.
+      </video>
+    </section>
+  </div>
+
+  <div id="container-2" class="bg-fundo-2 p-4 pt-50">
+    <% total_1 = 3 %>
+    <% total_2 = 3 %>
+
+    <section id="box-1" class="grid grid-cols-2 p-4">
+      <div id="content" class="flex-row justify-between"> 
+        <% @salgados.where(mass: "Fria").each do |salgado| %>
+          <div id="item-1" class="text-white font-bold text-2xl flex justify-between p-2">
+            <div><%= link_to salgado.name,edit_salgado_path(salgado), class:''  %></div>
+            <div><%= salgado.price %> R$</div>
+          </div>
+        <% end %>
+      </div>
+      <div class="slider" style='
+          --width: 100px;
+          --height: 180px;
+          --quantity: <%= total_1 %> ;
+      '>
+        <div class='list'>
+          <% (1..total_1).each do |i| %>
+            <div class='item' style='<%= "--position: #{i};" %>'>
+              <img src='<%= image_path("img#{i}.jpeg")%>' alt='image' class='rounded-full'>
+            </div>
+            
+            <% end %>
+        </div>
+      </div>
+    </section>
+
+
+   
+    <section id="box-2" class=" grid grid-cols-2 p-4">
+
+      <div id="content" class="flex-row justify-between "> 
+        <% @salgados.where(mass: "Cuzida").each do |salgado| %>
+          <div id="item-2" class="text-white font-bold text-2xl flex justify-between p-2">
+            <div><%= link_to salgado.name, edit_salgado_path(salgado), class: ''  %></div>
+            <div><%= salgado.price %>R$</div>
+          </div>
+        <% end %>
+      </div>
+
+      <div class="slider" style='
+          --width: 100px;
+          --height: 180px;
+          --quantity: <%= total_2 %>;
+      '>
+        <div class='list'>
+          <% (1..total_2).each do |i| %>
+            <div class='item' style='<%= "--position: #{i}" %>'>
+              <img src='<%= image_path("imge#{i}.jpeg")%>' alt='image' class='rounded-full'>
+            </div>
+            <% end %>
+        </div>
+      </div>
+
+    </section>
+
+
+  </div>
+
+  <div id="container-3" class="bg-fundo-3 p-4 ">
+    <section id="box-1" class="mt-35">
+      <div id="content"> 
+        <% @bebidas.order(price: :desc).each do |bebida| %>
+          <div id="item" class="flex m-2 justify-between p-2 text-white font-bold text-2xl">
+            <div><%=link_to bebida.name, edit_bebida_path(bebida) %> - <%= format_volume(bebida.volume)%></div>
+            <div><%= number_to_currency(bebida.price, unit: "R$", separator: ",", delimiter: ".") %></div>
+          </div>
+        <% end %>
+      </div>
+    </section> 
+    <section id="box-2" class="border border-gray-100 rounded-sm flex justify-between p-4">
+      <% @sucos.each do |suco| %>
+        <p><%= link_to suco.name.humanize, edit_suco_path(suco), class: 'font-bold text-white text-xl'%></p>
+      <% end %>
+    </div>
+  </div>
+</main>

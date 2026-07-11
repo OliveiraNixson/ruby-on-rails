@@ -1,0 +1,16 @@
+<div class='min-h-screen'>
+
+<%= simple_form_for :salgados ,url: update_disponibility_salgados_path, method: :patch do |f| %>
+    <% @salgados.each do |salgado| %>
+        <div class='flex flex-row justify-between gap-2 rounded-lg max-w-md ml-auto mr-auto mt-2 mb-2 p-8 bg-gray-200'>
+            <p class='text-bold text-2xl text-left'><%= salgado.name %></p>
+            <%= hidden_field_tag "salgados[#{salgado.id}][disponibility]", 0 %>
+            <%= check_box_tag "salgados[#{salgado.id}][disponibility]","1",salgado.disponibility %>
+        </div>
+    <% end %>
+    <div class='flex justify-evenly p-4 '>
+        <%= f.submit class: 'bg-blue-500 hover:bg-blue-600 rounded-lg transition ease-in-out p-2 text-white cursor-pointer' %>
+    </div>
+<% end %>
+
+</div>

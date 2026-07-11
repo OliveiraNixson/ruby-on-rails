@@ -1,0 +1,15 @@
+<div class='min-h-screen'>
+<%= simple_form_for :sucos , url:update_disponibility_sucos_path, method: :patch do |f| %>
+    <% @sucos.each do |suco| %>
+        <div class='flex flex-row justify-between gap-2 rounded-lg max-w-md ml-auto mr-auto mt-2 p-8 bg-gray-200'>
+            <p class='text-bold text-2xl text-left'><%= suco.name %></p>
+            <%= hidden_field_tag "sucos[#{suco.id}][disponibility]", 0 %>
+            <%= check_box_tag "sucos[#{suco.id}][disponibility]","1", suco.disponibility %>
+        </div>
+    <% end %>
+    <div class='flex justify-evenly p-4'>
+        <%= f.submit class: 'bg-blue-500 hover:bg-blue-600 rounded-lg transition ease-in-out p-2 text-white cursor-pointer'%>
+    </div>
+<% end %>
+
+</div>
