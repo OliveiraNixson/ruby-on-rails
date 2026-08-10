@@ -1,0 +1,17 @@
+<h1>Importar Planilha Com ROO</h1>
+<%= form_with url: imports_path , method: :post, multipart: true do |form| %>
+    <%= form.file_field :file %>
+    <%= form.submit %>
+<% end %>
+
+
+<% if flash[:notice] %>
+    <p style="color: green;><%= flash[:notice]%></p>
+<% end %>
+
+<% if flash[:alert] %>
+    <p style="color: green;><%= flash[:alert]%></p>
+<% end %>
+
+<%= link_to "Ver usuarios", users_path %>
+

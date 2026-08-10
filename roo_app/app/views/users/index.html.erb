@@ -1,0 +1,22 @@
+<h1> Usuarios Importados </h1>
+
+<table>
+    <thead> 
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+        </tr>
+    </thead>
+        <% @users.each do |user| %>
+            <tr>
+                <td><%= user.name%></td>
+                <td><%= user.email%></td>
+            </th>
+        <% end %>
+    <tbody>
+
+    </tbody>
+
+</table>
+
+<%= link_to "Voltar para importar", root_path %>
